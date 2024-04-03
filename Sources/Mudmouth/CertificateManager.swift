@@ -22,20 +22,17 @@ internal class CertificateManager: ObservableObject {
     @Published var configuration: Configuration!
 
     init() {
-        self.configuration = load(key: identifier)
+        self.configuration = load()
     }
 
     /// ルート証明書作成
     /// - Returns: 証明書
     @discardableResult
     func generate() -> Configuration {
-        let encoder: JSONEncoder = .init()
+        SwiftyLogger.verbose("Generate New Root Certificate")
         let configuration: Configuration = .default
-        // swiftlint:disable:next force_try
-        let data: Data = try! encoder.encode(configuration)
         #if !targetEnvironment(simulator)
-        // swiftlint:disable:next force_try
-        try! keychain.set(data, key: identifier)
+        keychain.configuration = configuration
         #endif
         self.configuration = configuration
         return configuration
@@ -43,7 +40,7 @@ internal class CertificateManager: ObservableObject {
 
     /// 証明書を読み込み、なければ作成する
     /// - Returns: 証明書
-    private func load(key identifier: String) -> Configuration {
+    private func load() -> Configuration {
         keychain.configuration ?? generate()
     }
 

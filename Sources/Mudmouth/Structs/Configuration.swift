@@ -19,14 +19,35 @@ public struct Configuration: Codable {
     public let certificate: Certificate
     public let privateKey: Certificate.PrivateKey
 
+    enum CodingKeys: String, CodingKey {
+        case certificate
+        case privateKey
+    }
+
     public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.certificate = try .init(derEncoded: try container.decode(Data.self, forKey: .certificate).bytes)
-        self.privateKey = .init(try P256.Signing.PrivateKey(derRepresentation: try container.decode(Data.self, forKey: .privateKey)))
+        do {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            self.certificate = try .init(derEncoded: try container.decode(Data.self, forKey: .certificate).bytes)
+            self.privateKey = .init(try P256.Signing.PrivateKey(derRepresentation: try container.decode(Data.self, forKey: .privateKey)))
+        } catch (let error) {
+            SwiftyLogger.error(error)
+            throw error
+        }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        do {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode(certificate.derRepresentation, forKey: .certificate)
+            try container.encode(privateKey.derRepresentation, forKey: .privateKey)
+        } catch (let error) {
+            SwiftyLogger.error(error)
+            throw error
+        }
     }
 
     private init() {
-        let privateKey: Certificate.PrivateKey = .root
+        let privateKey: Certificate.PrivateKey = .default
         let currentTime: Date = .default
         // swiftlint:disable:next force_try
         let name: DistinguishedName = try! DistinguishedName {
@@ -63,17 +84,6 @@ public struct Configuration: Codable {
     init(certificate: Certificate, privateKey: Certificate.PrivateKey) {
         self.certificate = certificate
         self.privateKey = privateKey
-    }
-
-    enum CodingKeys: String, CodingKey {
-        case certificate
-        case privateKey
-    }
-
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(certificate.derRepresentation, forKey: .certificate)
-        try container.encode(privateKey.derRepresentation, forKey: .privateKey)
     }
 
     var issuer: String {

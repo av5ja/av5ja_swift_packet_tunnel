@@ -15,12 +15,34 @@ public extension Keychain {
     }()
 
     var configuration: Configuration? {
-        let identifier: String = "63f95c5142c5a0bb7ceb137c4663001e01f4fffc4656f50dc033d82d8d4e0cc8"
-        let decoder: JSONDecoder = .init()
-        guard let data: Data = try? getData(identifier)
-        else {
-            return nil
+        get {
+            do {
+                let identifier: String = "63f95c5142c5a0bb7ceb137c4663001e01f4fffc4656f50dc033d82d8d4e0cc8"
+                let decoder: JSONDecoder = .init()
+                guard let data: Data = try getData(identifier)
+                else {
+                    return nil
+                }
+                return try decoder.decode(Configuration.self, from: data)
+            } catch (let error) {
+                SwiftyLogger.error(error)
+                return nil
+            }
         }
-        return try? decoder.decode(Configuration.self, from: data)
+        set {
+            do {
+                let identifier: String = "63f95c5142c5a0bb7ceb137c4663001e01f4fffc4656f50dc033d82d8d4e0cc8"
+                let encoder: JSONEncoder = .init()
+                guard let newValue: Configuration = newValue
+                else {
+                    return
+                }
+                let data: Data = try encoder.encode(newValue)
+                return try set(data, key: identifier)
+            } catch (let error) {
+                SwiftyLogger.error(error)
+                return
+            }
+        }
     }
 }

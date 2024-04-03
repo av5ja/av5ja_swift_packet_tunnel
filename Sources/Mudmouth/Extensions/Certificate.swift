@@ -51,6 +51,10 @@ public extension Certificate.PrivateKey {
         // swiftlint:disable:next force_try
         try! serializeAsPEM().derBytes.data
     }
+    
+    static var `default`: Certificate.PrivateKey {
+        .init(P256.Signing.PrivateKey())
+    }
 
     /// Root PrivateKey
     static let root: Certificate.PrivateKey = {

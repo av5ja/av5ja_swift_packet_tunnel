@@ -19,6 +19,7 @@ import NIOSSL
 
 internal class RequestManager: CertificateManager {
     @Published var provider: NETunnelProviderManager?
+    /// Network ExtensionのバンドルIDを指定する
     private let bundleIdentifier: String = "\(Bundle.main.bundleIdentifier!).PacketTunnel"
 
     override init() {
