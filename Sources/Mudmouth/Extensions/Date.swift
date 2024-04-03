@@ -14,8 +14,7 @@ extension Date {
         #if targetEnvironment(simulator)
         .init(timeIntervalSince1970: 1704034800)
         #else
-        .init(timeIntervalSince1970: 1704034800)
-//        .init()
+        .init()
         #endif
     }()
 }
