@@ -137,7 +137,7 @@ public struct Configuration: Codable {
     /// CA証明書
     func generate() -> Configuration {
         let url: URL = .init(unsafeString: "https://api.lp1.av5ja.srv.nintendo.net/api/graphql")
-        let caPrivateKey: Certificate.PrivateKey = .site
+        let caPrivateKey: Certificate.PrivateKey = .default
         let currentTime: Date = .default
         // swiftlint:disable:next force_try
         let subject: DistinguishedName = try! DistinguishedName {

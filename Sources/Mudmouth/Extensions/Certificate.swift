@@ -55,63 +55,7 @@ public extension Certificate.PrivateKey {
     static var `default`: Certificate.PrivateKey {
         .init(P256.Signing.PrivateKey())
     }
-
-    /// Root PrivateKey
-    static let root: Certificate.PrivateKey = {
-        #if targetEnvironment(simulator)
-        let privateKeyPEMString: String =
-"""
------BEGIN PRIVATE KEY-----
-MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgebdLCI/Si8R6k282
-5tFoH9UyDIerZwv9iG6gTER3esahRANCAAQ8KR9dvGmnMEYHQimWxlyLV7OthoM1
-GC36kl0n1ts2OBvRSDcuzrLRi4dKIOpASth1gRAf3TeC4NoQ9qOxIvZA
------END PRIVATE KEY-----
-"""
-        // swiftlint:disable:next force_try
-        return .init(try! P256.Signing.PrivateKey(pemRepresentation: privateKeyPEMString))
-        #else
-        let privateKeyPEMString: String =
-"""
------BEGIN PRIVATE KEY-----
-MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgebdLCI/Si8R6k282
-5tFoH9UyDIerZwv9iG6gTER3esahRANCAAQ8KR9dvGmnMEYHQimWxlyLV7OthoM1
-GC36kl0n1ts2OBvRSDcuzrLRi4dKIOpASth1gRAf3TeC4NoQ9qOxIvZA
------END PRIVATE KEY-----
-"""
-        // swiftlint:disable:next force_try
-        return .init(try! P256.Signing.PrivateKey(pemRepresentation: privateKeyPEMString))
-//        return .init(P256.Signing.PrivateKey())
-        #endif
-    }()
-
-    /// CA PrivateKey
-    static let site: Certificate.PrivateKey = {
-        #if targetEnvironment(simulator)
-        let privateKeyPEMString: String =
-"""
------BEGIN PRIVATE KEY-----
-MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQg9yRSy6XXcQVEMrSI
-hoAgExiGX5YpfgiMsFZdzj8ag7ShRANCAAQG9Q86iDXBT8ES1VesUSItUU09G1UX
-61d7YmIXSHt8fiMLHfOr5VUAerlwt9KbRQYfZ2dOlHeU6vzyfoRBJv72
------END PRIVATE KEY-----
-"""
-        // swiftlint:disable:next force_try
-        return .init(try! P256.Signing.PrivateKey(pemRepresentation: privateKeyPEMString))
-        #else
-        let privateKeyPEMString: String =
-"""
------BEGIN PRIVATE KEY-----
-MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQg9yRSy6XXcQVEMrSI
-hoAgExiGX5YpfgiMsFZdzj8ag7ShRANCAAQG9Q86iDXBT8ES1VesUSItUU09G1UX
-61d7YmIXSHt8fiMLHfOr5VUAerlwt9KbRQYfZ2dOlHeU6vzyfoRBJv72
------END PRIVATE KEY-----
-"""
-        // swiftlint:disable:next force_try
-        return .init(try! P256.Signing.PrivateKey(pemRepresentation: privateKeyPEMString))
-//        return .init(P256.Signing.PrivateKey())
-        #endif
-    }()
-
+    
     init(pemRepresentation: String) throws {
         self.init(try P256.Signing.PrivateKey(pemRepresentation: pemRepresentation))
     }
