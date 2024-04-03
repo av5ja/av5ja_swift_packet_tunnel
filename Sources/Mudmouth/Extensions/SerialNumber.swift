@@ -10,11 +10,11 @@ import Foundation
 import X509
 
 extension Certificate.SerialNumber {
-    static let `default`: Certificate.SerialNumber = {
+    static var `default`: Certificate.SerialNumber {
 #if targetEnvironment(simulator)
         .init(bytes: [185, 121, 99, 172, 224, 189, 8, 9, 69, 150, 227, 39, 214, 49, 227, 209, 221, 75, 3, 64])
 #else
         .init()
 #endif
-    }()
+    }
 }

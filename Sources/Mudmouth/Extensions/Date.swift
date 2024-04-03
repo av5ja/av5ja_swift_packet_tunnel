@@ -10,11 +10,11 @@ import Foundation
 
 extension Date {
     /// 2024-01-01T00:00:00
-    static let `default`: Date = {
-        #if targetEnvironment(simulator)
+    static var `default`: Date {
+#if targetEnvironment(simulator)
         .init(timeIntervalSince1970: 1704034800)
-        #else
+#else
         .init()
-        #endif
-    }()
+#endif
+    }
 }
