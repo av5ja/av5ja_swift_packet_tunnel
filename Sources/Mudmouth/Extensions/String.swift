@@ -9,14 +9,6 @@
 import Foundation
 
 extension String {
-    var data: Data {
-        Data(hexString: self)
-    }
-
-    var bytes: [UInt8] {
-        [UInt8](data)
-    }
-    
     /// 正規表現でマッチングし、合致した文字列をグループを指定して返す
     func capture(pattern: String, group: Int) -> String? {
         capture(pattern: pattern, group: [group]).first
