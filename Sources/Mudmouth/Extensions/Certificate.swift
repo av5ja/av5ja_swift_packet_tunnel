@@ -51,11 +51,11 @@ public extension Certificate.PrivateKey {
         // swiftlint:disable:next force_try
         try! serializeAsPEM().derBytes.data
     }
-    
+
     static var `default`: Certificate.PrivateKey {
         .init(P256.Signing.PrivateKey())
     }
-    
+
     init(pemRepresentation: String) throws {
         self.init(try P256.Signing.PrivateKey(pemRepresentation: pemRepresentation))
     }

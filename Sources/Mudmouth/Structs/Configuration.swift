@@ -29,7 +29,7 @@ public struct Configuration: Codable {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.certificate = try .init(derEncoded: try container.decode(Data.self, forKey: .certificate).bytes)
             self.privateKey = .init(try P256.Signing.PrivateKey(derRepresentation: try container.decode(Data.self, forKey: .privateKey)))
-        } catch (let error) {
+        } catch let error {
             SwiftyLogger.error(error)
             throw error
         }
@@ -40,7 +40,7 @@ public struct Configuration: Codable {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encode(certificate.derRepresentation, forKey: .certificate)
             try container.encode(privateKey.derRepresentation, forKey: .privateKey)
-        } catch (let error) {
+        } catch let error {
             SwiftyLogger.error(error)
             throw error
         }
@@ -113,7 +113,7 @@ public struct Configuration: Codable {
     var publicKeyString: String {
         privateKey.publicKey.derBytes.hexString
     }
-    
+
     var privateKeyString: String {
         privateKey.derBytes.hexString
     }

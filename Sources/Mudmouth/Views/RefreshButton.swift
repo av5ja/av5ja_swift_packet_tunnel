@@ -1,5 +1,5 @@
 //
-//  RequestView.swift
+//  RefreshButton.swift
 //  Mudmouth
 //
 //  Created by devonly on 2022/11/26.
@@ -10,7 +10,7 @@ import SwiftUI
 import OSLog
 import NetworkExtension
 
-public struct RequestButton: View {
+public struct RefreshButton: View {
     @Environment(\.scenePhase) private var scenePhase
     @StateObject var manager: RequestManager = .init()
     @State private var status: NEVPNStatus = .invalid
@@ -18,7 +18,7 @@ public struct RequestButton: View {
     public init() {}
 
     public var body: some View {
-        StartCapture()
+        Refresh
             .onChange(of: scenePhase, perform: { newValue in
                 if newValue == .active {
                     Task(priority: .medium, operation: {
@@ -42,7 +42,7 @@ public struct RequestButton: View {
 
     @ViewBuilder
     // swiftlint:disable:next identifier_name
-    func StartCapture() -> some View {
+    var Refresh: some View {
         switch status {
         case .invalid:
             Button(action: {
@@ -90,5 +90,5 @@ public struct RequestButton: View {
 }
 
 #Preview {
-    RequestButton()
+    RefreshButton()
 }

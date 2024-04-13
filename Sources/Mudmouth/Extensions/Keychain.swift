@@ -24,7 +24,7 @@ public extension Keychain {
                     return nil
                 }
                 return try decoder.decode(Configuration.self, from: data)
-            } catch (let error) {
+            } catch let error {
                 SwiftyLogger.error(error)
                 return nil
             }
@@ -39,7 +39,7 @@ public extension Keychain {
                 }
                 let data: Data = try encoder.encode(newValue)
                 return try set(data, key: identifier)
-            } catch (let error) {
+            } catch let error {
                 SwiftyLogger.error(error)
                 return
             }

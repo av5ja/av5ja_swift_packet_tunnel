@@ -20,12 +20,12 @@ class ProxyHandler: NotificationHandler, ChannelDuplexHandler {
     typealias InboundOut = HTTPClientRequestPart
     typealias OutboundIn = HTTPClientResponsePart
     typealias OutboundOut = HTTPServerResponsePart
-    
+
     private var url: URL = .init(unsafeString: "https://api.lp1.av5ja.srv.nintendo.net/api/graphql")
-    
+
     private var requests: Deque<HTTP.Request> = []
     private var response: HTTP.Response?
-    
+
     func channelRead(context: ChannelHandlerContext, data: NIOAny) {
         let httpData = unwrapInboundIn(data)
         switch httpData {
@@ -50,7 +50,7 @@ class ProxyHandler: NotificationHandler, ChannelDuplexHandler {
             context.fireChannelRead(wrapInboundOut(.end(nil)))
         }
     }
-    
+
     func write(context: ChannelHandlerContext, data: NIOAny, promise: EventLoopPromise<Void>?) {
         let httpData = unwrapOutboundIn(data)
         switch httpData {
@@ -72,7 +72,7 @@ class ProxyHandler: NotificationHandler, ChannelDuplexHandler {
             context.write(wrapOutboundOut(.end(nil)), promise: promise)
         }
     }
-    
+
     func channelInactive(context: ChannelHandlerContext) {
     }
 }

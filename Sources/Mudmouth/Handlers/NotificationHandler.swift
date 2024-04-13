@@ -33,13 +33,13 @@ extension HTTPHeaders: Codable {
         let body: [String: String] = reduce(into: [:], { $0[$1.name] = $1.value })
         try container.encode(body)
     }
-    
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         let headers: [(String, String)] = try container.decode([String: String].self).map({ ($0.key, $0.value) })
         self.init(headers)
     }
-    
+
     public var base64EncodedString: String {
         let encoder: JSONEncoder = .init()
         // swiftlint:disable:next force_try

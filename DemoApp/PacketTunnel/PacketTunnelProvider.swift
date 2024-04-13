@@ -37,5 +37,6 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
         }
         let configuration: Configuration = try decoder.decode(Configuration.self, from: data)
         try await startMITMServer(configuration: configuration)
+//        try await startMITMServer()
     }
 }

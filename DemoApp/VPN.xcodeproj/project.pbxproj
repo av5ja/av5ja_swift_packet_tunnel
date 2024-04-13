@@ -57,6 +57,7 @@
 		10C295332BB7D09F00E2F191 /* PacketTunnel.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PacketTunnel.entitlements; sourceTree = "<group>"; };
 		10C295392BB7D0BB00E2F191 /* VPN.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VPN.entitlements; sourceTree = "<group>"; };
 		10C295542BB8631200E2F191 /* Mudmouth */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Mudmouth; path = ..; sourceTree = "<group>"; };
+		10E215F42BBE3ED30079113E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +106,7 @@
 		1060B3602BAF2BD4008356E4 /* VPN */ = {
 			isa = PBXGroup;
 			children = (
+				10E215F42BBE3ED30079113E /* Info.plist */,
 				10C295392BB7D0BB00E2F191 /* VPN.entitlements */,
 				1060B3612BAF2BD4008356E4 /* VPNApp.swift */,
 				1060B3632BAF2BD4008356E4 /* ContentView.swift */,
@@ -406,6 +408,7 @@
 				DEVELOPMENT_TEAM = D9HU6JZF2Q;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = VPN/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -441,6 +444,7 @@
 				DEVELOPMENT_TEAM = D9HU6JZF2Q;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = VPN/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

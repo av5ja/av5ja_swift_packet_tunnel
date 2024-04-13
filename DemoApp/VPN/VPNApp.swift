@@ -57,12 +57,11 @@ struct VPNApp: App {
             if let url = connectionOptions.urlContexts.first?.url {
             }
         }
-        
+
         func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse) async {
             if let bulletToken: String = response.headers.bulletToken,
                let gameWebToken: String = response.headers.gameWebToken,
-               let version: String = response.headers.version
-            {
+               let version: String = response.headers.version {
                 SwiftyLogger.debug("Version: \(version)")
                 SwiftyLogger.debug("BulletToken: \(bulletToken)")
                 SwiftyLogger.debug("GameWebToken: \(gameWebToken)")

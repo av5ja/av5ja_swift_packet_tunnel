@@ -15,9 +15,15 @@ import NIOHTTP1
 import NIOPosix
 import NIOSSL
 import OSLog
+import KeychainAccess
 
 public func startMITMServer(configuration: Configuration) async throws {
     let url: URL = .init(unsafeString: "https://api.lp1.av5ja.srv.nintendo.net/api/graphql")
+    let keychain: Keychain = .default
+    guard let configuration = keychain.configuration
+    else {
+        return
+    }
     // Process packets in the tunnel.
     let group = MultiThreadedEventLoopGroup(numberOfThreads: 1)
     return try await withCheckedThrowingContinuation({ continuation in

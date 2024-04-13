@@ -22,7 +22,7 @@ struct ContentView: View {
                 .sheet(isPresented: $isPresented, content: {
                     CertificateView()
                 })
-                RequestButton()
+                RefreshButton()
             })
             .navigationTitle("Thunderbolt")
         })

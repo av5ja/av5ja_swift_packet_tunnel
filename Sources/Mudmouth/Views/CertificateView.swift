@@ -11,6 +11,7 @@ import SwiftUI
 public struct CertificateView: View {
     @StateObject private var manager: CertificateManager = .init()
     @State private var isPresented: Bool = false
+
     public init() {}
 
     public var body: some View {

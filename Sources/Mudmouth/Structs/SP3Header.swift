@@ -62,11 +62,11 @@ public extension Array where Element == SP3Header {
         }
         return gameWebToken
     }
-    
+
     var version: String? {
         first(where: { $0.key == .version })?.value
     }
-    
+
     var agent: String? {
         first(where: { $0.key == .agent })?.value
     }
